@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 0.5em;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-right: 1em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        section {
+            margin: 2em 0;
+        }
+
+        footer {
+            background-color: #34495e;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .homepage-images {
+            display: flex;
+            justify-content: space-between;
+            height: 250px;
+        }
+
+        .homepage-images img {
+            max-width: 30%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px #000000;
+        }
+
+        section#quick-links {
+            text-align: center;
+            margin: 2em 0;
+        }
+
+        .quick-container {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .icon img {
+            max-width: 30%;
+            height: 20%;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        section#login {
+            margin: 2em 0;
+            text-align: center;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .login-options button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #doctor-login,
+        #patient-login {
+            display: none;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #000000;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        #doctor-login.active,
+        #patient-login.active {
+            display: block;
+        }
+        form{
+            background-color: #000000;
+            color: #ffffff;
+        }
+        input[type="text"],input[type="password"]{
+            border-radius: 5px;
+            height:16px;
+            margin: 5px;
+        }
+
+        /*responsive*/
+        @media only screen and (max-width: 600px) {
+            /* Adjust styles for small screens */
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin-bottom: 0.5em;
+            }
+
+            .homepage-images img {
+                max-width: 100%;
+            }
+
+            .quick-container {
+                overflow-x: auto;
+                white-space: normal;
+                text-align: center;
+            }
+
+            .icon img {
+                max-width: 80%;
+                height: auto;
+            }
+
+            section#login {
+                margin: 1em 0;
+            }
+
+            .login-options {
+                flex-direction: column;
+            }
+
+            .login-options button {
+                margin: 0 0 10px 0;
+            }
+
+            #doctor-login,
+            #patient-login {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Hospital Management System</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Specialties</a>
+                <div class="dropdown-content">
+                    <a href="#">Cardiology</a>
+                    <a href="#">Neurology</a>
+                    <a href="#">Nephrology</a>
+                    <a href="#">Pediatrics</a>
+                    <a href="#">Gynecology</a>
+                    <a href="#">Dermatology</a>
+                </div>
+            </li>
+
+            <li><a href="#appointment">Book an Appointment</a></li>
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Medical Services</a>
+                <div class="dropdown-content">
+                    <a href="#">Blood Bank</a>
+                    <a href="#">Cardiac surgery</a>
+                    <a href="#">Neurosurgery</a>
+                    <a href="#">ICU</a>
+                    <a href="#">General Surgery</a>
+                    <a href="#">Orthopaedics</a>
+                </div>
+            </li>
+
+            <li class="dropdown" id="login-dropdown">
+                <a href="#" class="dropbtn">Login</a>
+                <div class="dropdown-content" id="login-content">
+                    <a href="#" onclick="showLogin('doctor-login')">Login as Doctor</a>
+                    <a href="#" onclick="showLogin('patient-login')">Login as Patient</a>
+                </div>
+            </li>
+
+            <li><a href="file:///D://hospital_MS/signup.html">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="homepage-images">
+        <img src="file:///D://hospital_MS/paediatrics.jpeg" alt="Hospital Image 1">
+        <img src="file:///D://hospital_MS/cardiac.jpeg" alt="Hospital Image 2">
+        <img src="file:///D://hospital_MS/homepage.jpeg" alt="Hospital Image 3">
+    </section>
+    <section id="quick-links">
+        <h2>Quick Links</h2>
+        <div class="quick-container">
+            <div class="icon"><img src="file:///D://hospital_MS/appointment.jpeg" alt="Icon 1"></div>
+            <div class="icon"><img src="file:///D://hospital_MS/emergency.png" alt="Icon 2"></div>
+        </div>
+    </section>
+
+    <section id="login">
+        <div id="doctor-login" class="login-form">
+            <h3>Doctor Login</h3>
+            <button class="close-btn" onclick="closeForm('doctor-login')">Close</button>
+            <form onsubmit="redirectToNewPage(); return false;">
+                <label for="doctor-username">Username:</label>
+                <input type="text" id="doctor-username" name="doctor-username" required><br>
+                <label for="doctor-password">Password:</label>
+                <input type="password" id="doctor-password" name="doctor-password" required><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div id="patient-login" class="login-form">
+            <h3>Patient Login</h3><button class="close-btn" onclick="closeForm('patient-login')">Close</button>
+            <form onsubmit="redirectToNewPage(); return false;">
+                <label for="patient-username">Username:</label>
+                <input type="text" id="patient-username" name="patient-username" required><br>
+                <label for="patient-password">Password:</label>
+                <input type="password" id="patient-password" name="patient-password" required><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Hospital Management System</p>
+    </footer>
+
+    <script>
+        function showLogin(loginType) {
+            var loginForms = document.querySelectorAll('.login-form');
+            loginForms.forEach(form => {
+                form.classList.remove('active');
+            });
+
+            var selectedForm = document.getElementById(loginType);
+            if (selectedForm) {
+                selectedForm.classList.add('active');
+            }
+        }
+
+        function redirectToNewPage() {
+            window.location.href = 'new-page.html';
+        }
+        function closeForm(formId) {
+        var form = document.getElementById(formId);
+        form.classList.remove('active');
+    }
+    </script>
+</body>
+
+</html>

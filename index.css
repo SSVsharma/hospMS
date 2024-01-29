@@ -1,1 +1,201 @@
 
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 0.5em;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-right: 1em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        section {
+            margin: 2em 0;
+        }
+
+        footer {
+            background-color: #34495e;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .homepage-images {
+            display: flex;
+            justify-content: space-between;
+            height: 250px;
+        }
+
+        .homepage-images img {
+            max-width: 30%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px #000000;
+        }
+
+        section#quick-links {
+            text-align: center;
+            margin: 2em 0;
+        }
+
+        .quick-container {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .icon img {
+            max-width: 30%;
+            height: 20%;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        section#login {
+            margin: 2em 0;
+            text-align: center;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .login-options button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #doctor-login,
+        #patient-login {
+            display: none;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #000000;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        #doctor-login.active,
+        #patient-login.active {
+            display: block;
+        }
+        form{
+            background-color: #000000;
+            color: #ffffff;
+        }
+        input[type="text"],input[type="password"]{
+            border-radius: 5px;
+            height:16px;
+            margin: 5px;
+        }
+
+        /*responsive*/
+        @media only screen and (max-width: 600px) {
+            /* Adjust styles for small screens */
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin-bottom: 0.5em;
+            }
+
+            .homepage-images img {
+                max-width: 100%;
+            }
+
+            .quick-container {
+                overflow-x: auto;
+                white-space: normal;
+                text-align: center;
+            }
+
+            .icon img {
+                max-width: 80%;
+                height: auto;
+            }
+
+            section#login {
+                margin: 1em 0;
+            }
+
+            .login-options {
+                flex-direction: column;
+            }
+
+            .login-options button {
+                margin: 0 0 10px 0;
+            }
+
+            #doctor-login,
+            #patient-login {
+                width: 90%;
+            }
+        }
